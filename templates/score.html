@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Result</title>
+
+<style>
+body{
+background:#f1f5f9;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+font-family:Segoe UI;
+}
+
+.card{
+background:white;
+padding:40px;
+width:500px;
+text-align:center;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+h1{
+color:#2563eb;
+}
+
+a{
+display:inline-block;
+margin-top:20px;
+padding:12px 20px;
+background:#2563eb;
+color:white;
+text-decoration:none;
+border-radius:10px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<h1>🎉 Test Completed</h1>
+
+<h2>{{subject}}</h2>
+
+<h2>Score: {{score}} / 30</h2>
+
+<h2>Percentage: {{percentage}}%</h2>
+
+<a href="/results">View Results</a>
+<a href="/dashboard">Dashboard</a>
+
+</div>
+
+</body>
+</html>

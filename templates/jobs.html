@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jobs - SmartHire</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#eef2f7;
+        }
+
+        nav{
+            background:#1e2a8a;
+            padding:20px;
+            text-align:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin:0 25px;
+            font-size:22px;
+        }
+
+        nav a:hover{
+            color:#facc15;
+        }
+
+        .container{
+            width:90%;
+            max-width:1200px;
+            margin:40px auto;
+        }
+
+        h1{
+            text-align:center;
+            color:#1e3a8a;
+            margin-bottom:40px;
+            font-size:45px;
+        }
+
+        .job-card{
+            background:white;
+            padding:30px;
+            border-radius:15px;
+            margin-bottom:30px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.15);
+            text-align:center;
+        }
+
+        .job-card h2{
+            color:#1565c0;
+            margin-bottom:15px;
+        }
+
+        .job-card p{
+            margin:10px 0;
+            font-size:18px;
+        }
+
+        .apply-btn{
+            display:inline-block;
+            margin-top:20px;
+            padding:12px 30px;
+            background:#1565c0;
+            color:white;
+            text-decoration:none;
+            border-radius:30px;
+            font-size:18px;
+        }
+
+        .apply-btn:hover{
+            background:#0d47a1;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+    <a href="/dashboard">Home</a>
+    <a href="/profile">Profile</a>
+    <a href="/jobs">Jobs</a>
+    <a href="/results">Results</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<div class="container">
+
+    <h1>Available Jobs</h1>
+
+    <div class="job-card">
+        <h2>Machine Learning Intern</h2>
+
+        <p><b>Skills Required:</b> Python, Machine Learning, AI, Data Science, AWS</p>
+
+        <p><b>Experience:</b> Fresher</p>
+
+        <p><b>Location:</b> Hyderabad</p>
+
+        <a href="/job_details/ml_intern" class="apply-btn">
+            Apply Now
+        </a>
+    </div>
+
+    <div class="job-card">
+        <h2>Python Developer Intern</h2>
+
+        <p><b>Skills Required:</b> Python, Flask, SQL, Jupyter Notebook</p>
+
+        <p><b>Experience:</b> Fresher</p>
+
+        <p><b>Location:</b> Bangalore</p>
+
+        <a href="/job_details/python_intern" class="apply-btn">
+            Apply Now
+        </a>
+    </div>
+
+    <div class="job-card">
+        <h2>Data Analyst Intern</h2>
+
+        <p><b>Skills Required:</b> Python, SQL, Excel, Power BI</p>
+
+        <p><b>Experience:</b> Fresher</p>
+
+        <p><b>Location:</b> Chennai</p>
+
+        <a href="/job_details/data_analyst" class="apply-btn">
+            Apply Now
+        </a>
+    </div>
+
+    <div class="job-card">
+        <h2>Software Engineer Intern</h2>
+
+        <p><b>Skills Required:</b> Java, Python, Data Structures, Algorithms</p>
+
+        <p><b>Experience:</b> Fresher</p>
+
+        <p><b>Location:</b> Pune</p>
+
+        <a href="/job_details/software_engineer" class="apply-btn">
+            Apply Now
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

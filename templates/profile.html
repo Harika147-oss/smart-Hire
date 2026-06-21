@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile - SmartHire</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+            background:#f1f5f9;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .profile-card{
+            width:500px;
+            background:white;
+            padding:40px;
+            border-radius:20px;
+            text-align:center;
+            box-shadow:0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .avatar{
+            width:120px;
+            height:120px;
+            border-radius:50%;
+            background:#2563eb;
+            color:white;
+            font-size:50px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin:auto;
+            margin-bottom:20px;
+        }
+
+        h1{
+            color:#0f172a;
+            margin-bottom:20px;
+        }
+
+        .info{
+            text-align:left;
+            margin-top:20px;
+        }
+
+        .info p{
+            font-size:18px;
+            padding:12px;
+            margin:10px 0;
+            background:#f8fafc;
+            border-radius:10px;
+        }
+
+        strong{
+            color:#2563eb;
+        }
+
+        .btn{
+            display:inline-block;
+            margin-top:25px;
+            padding:12px 25px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:10px;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="profile-card">
+
+    <div class="avatar">
+        👤
+    </div>
+
+    <h1>My Profile</h1>
+
+    <div class="info">
+
+        <p>
+            <strong>Name :</strong>
+            {{ user[1] }}
+        </p>
+
+        <p>
+            <strong>Email :</strong>
+            {{ user[2] }}
+        </p>
+
+        <p>
+            <strong>Account Status :</strong>
+            Active
+        </p>
+
+        <p>
+            <strong>Recommended Domain :</strong>
+            Machine Learning Engineer
+        </p>
+
+    </div>
+
+    <a href="/dashboard" class="btn">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>
