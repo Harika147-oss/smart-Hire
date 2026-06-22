@@ -1,31 +1,9 @@
-def find_skill_gap(resume_text, job_skills):
+def find_skill_gap(resume_skills, job_skills):
 
-    resume_text = resume_text.lower()
+    resume_set = set(resume_skills)
 
-    skills = [
-        "python",
-        "java",
-        "c",
-        "sql",
-        "excel",
-        "aws",
-        "machine learning",
-        "artificial intelligence",
-        "data analysis",
-        "jupyter notebook",
-        "matlab"
-    ]
+    job_set = set(job_skills)
 
-    candidate_skills = []
+    missing = list(job_set - resume_set)
 
-    for skill in skills:
-        if skill in resume_text:
-            candidate_skills.append(skill)
-
-    missing_skills = []
-
-    for skill in job_skills:
-        if skill.lower() not in candidate_skills:
-            missing_skills.append(skill)
-
-    return missing_skills
+    return missing

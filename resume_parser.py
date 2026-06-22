@@ -8,7 +8,3 @@ def extract_text(pdf_path):
             text += page.extract_text() or ""
 
     return text
-
-
-if __name__ == "__main__":
-    print("Resume Parser Ready")

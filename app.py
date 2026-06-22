@@ -1,8 +1,11 @@
+from resume_parser import extract_text
+from classifier import predict_domain
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
 import os
 from werkzeug.utils import secure_filename
+
 
 
 app = Flask(__name__)
@@ -68,49 +71,8 @@ def home():
         return redirect("/dashboard")
     return render_template("home.html")
 # Signup
-# Signup
-
-@app.route("/signup", methods=["GET","POST"])
-def signup():
-
-    if "email" in session:
-        return redirect("/dashboard")
-
-    if request.method == "POST":
-
-        name = request.form["name"]
-        email = request.form["email"]
-        password = request.form["password"]
-
-        try:
-
-            conn = get_db()
-            cursor = conn.cursor()
-
-            cursor.execute(
-                "INSERT INTO users(name,email,password) VALUES(?,?,?)",
-                (name,email,password)
-            )
-
-            conn.commit()
-            conn.close()
-
-            return redirect("/login")
-
-        except sqlite3.IntegrityError:
-
-            return "Email already exists"
-
-    return render_template("signup.html")
-
-# Login
-# Login
-
 @app.route("/login", methods=["GET","POST"])
 def login():
-
-    if "email" in session:
-        return redirect("/dashboard")
 
     if request.method == "POST":
 
@@ -122,7 +84,7 @@ def login():
 
         cursor.execute(
             "SELECT * FROM users WHERE email=? AND password=?",
-            (email,password)
+            (email, password)
         )
 
         user = cursor.fetchone()
@@ -130,14 +92,64 @@ def login():
         conn.close()
 
         if user:
-
             session["email"] = email
-            session["name"] = user[1]
-
             return redirect("/dashboard")
 
         return "Invalid Email or Password"
+
     return render_template("login.html")
+# Signup
+@app.route("/upload", methods=["GET", "POST"])
+def upload():
+
+    if request.method == "POST":
+
+        file = request.files["resume"]
+
+        if file:
+
+            filename = secure_filename(file.filename)
+
+            path = os.path.join(
+                app.config["UPLOAD_FOLDER"],
+                filename
+            )
+
+            file.save(path)
+
+            # Extract resume text
+            text = extract_text(path)
+
+            # Predict domain
+            category = predict_domain(text)
+            jobs = [
+                 "Machine Learning Engineer",
+                   "AI Engineer",
+                     "Data Scientist"
+            ]
+
+            return render_template(
+                "resume_score.html",
+                score=85,
+                category=category,
+                jobs=jobs,
+                improvement="""
+                Improve SQL Skills
+                Learn Power BI
+                Practice Data Structures & Algorithms
+                Improve Communication Skills
+                Build More Machine Learning Projects
+                """,
+                skills=[
+                    "Python",
+                    "Machine Learning",
+                    "SQL",
+                    "Flask",
+                    "Data Analysis"
+                ]
+            )
+
+    return render_template("upload.html")
 # Dashboard
 @app.route("/dashboard")
 def dashboard():
@@ -161,56 +173,6 @@ def profile():
         "profile.html",
         user=user
     )
-
-
-
-
-
-
-
-
-
-# Upload Resume
-
-
-@app.route("/upload", methods=["GET","POST"])
-def upload():
-
-    if request.method == "POST":
-
-
-        file = request.files["resume"]
-
-
-        if file:
-
-
-            filename = secure_filename(file.filename)
-
-
-            path = os.path.join(
-                app.config["UPLOAD_FOLDER"],
-                filename
-            )
-
-
-            file.save(path)
-
-
-            return redirect("/dashboard")
-
-
-
-    return render_template("upload.html")
-
-
-
-
-
-
-
-
-
 # Test
 
 
@@ -495,8 +457,7 @@ def course(course_name):
                 "OOP Concepts",
                 "File Handling",
                 "Projects"
-            ]
-        },
+            ]        },
 
         "ml": {
             "title": "Machine Learning",
@@ -512,7 +473,6 @@ def course(course_name):
         }
 
     }
-
     return render_template(
         "course.html",
         course=courses[course_name]
@@ -520,20 +480,10 @@ def course(course_name):
 # Logout
 @app.route("/logout")
 def logout():
-
     session.clear()
-
     return redirect("/login")
 
-
-
-
-
-
-
-
 if __name__ == "__main__":
-
     app.run(
         debug=True,
         port=8000
